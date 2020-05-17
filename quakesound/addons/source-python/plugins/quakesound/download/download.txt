@@ -1,0 +1,13 @@
+sound/quake/rampage.mp3
+sound/quake/dominating.mp3
+sound/quake/killingspree.mp3
+sound/quake/monsterkill.mp3
+sound/quake/ludicrouskill.wav
+sound/quake/ultrakill.mp3
+sound/quake/godlike.mp3
+sound/quake/wickedsick.mp3
+sound/quake/holyshit.mp3
+sound/quake/unstoppable.mp3
+sound/quake/bottomfeeder.mp3
+sound/quake/prepare.mp3
+sound/quake/firstblood.wav

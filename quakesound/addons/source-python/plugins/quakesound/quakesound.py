@@ -36,8 +36,8 @@ def round_start(args):
 		soundlib.playgamesound(i, 'quake/prepare.mp3')
 	setFirstblood(True)
 
-@Event('rpg_playerspawn')
-def rpg_playerspawn(args):
+@Event('playerspawn')
+def playerspawn(args):
 	userid = args.get_int('userid')
 	if not userid in players:
 		players[userid] = 0

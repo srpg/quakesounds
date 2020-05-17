@@ -26,14 +26,14 @@ def map_start(args):
 	players.clear()
 
 def _play(userid, sound):
-	for userid in rpglib.getUseridList():
+	for userid in soundlib.getUseridList():
 		soundlib.playgamesound(userid, 'quake/%s' % sound)  
 		    
 
 @Event('round_start')
 def round_start(args):
-	for i in rpglib.getUseridList():
-		rpglib.playgamesound(i, 'quake/prepare.mp3')
+	for i in soundlib.getUseridList():
+		soundlib.playgamesound(i, 'quake/prepare.mp3')
 	setFirstblood(True)
 
 @Event('rpg_playerspawn')
@@ -52,7 +52,7 @@ def player_death(args):
 			players[attacker] += 1
 
 			if _firstblood:
-				rpglib.playgamesound(attacker, 'quake/firstblood.wav')
+				soundlib.playgamesound(attacker, 'quake/firstblood.wav')
 				setFirstblood(False)
 			else:
 				sound = getSound(players[attacker])

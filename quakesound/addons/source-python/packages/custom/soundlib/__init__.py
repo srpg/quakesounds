@@ -1,10 +1,8 @@
 # ========================================
 # IMPORTS
 # ========================================
-
-import inspect, os, path, random
 from filters.players import PlayerIter
-from engines.server import engine_server, execute_server_command, global_vars, queue_command_string
+from engines.server import engine_server
 
 from players.helpers import edict_from_userid, index_from_userid
 

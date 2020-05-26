@@ -74,5 +74,5 @@ def getSound(i):
 		return _sounds[i]
 	return None
 
-_sounds = {5: 'multikill.mp3'6: 'rampage.mp3', 7: 'killingspree.mp3', 9: 'dominating.mp3', 15: 'ultrakill.mp3', 18: 'ludicrouskill.wav',  20: 'wickedsick.mp3', 21: 'monsterkill.mp3', 23: 'holyshit.mp3', 24: 'godlike.mp3', 32: 'bottomfeeder.mp3'35: 'unstoppable.mp3',}
+_sounds = {5: 'multikill.mp3'6: 'rampage.mp3', 7: 'killingspree.mp3', 9: 'dominating.mp3', 15: 'ultrakill.mp3', 18: 'ludicrouskill.wav',  20: 'wickedsick.mp3', 21: 'monsterkill.mp3', 23: 'holyshit.mp3', 24: 'godlike.mp3', 32: 'bottomfeeder.mp3', 35: 'unstoppable.mp3',}
 _others = {0: 'prepare.mp3', 1: 'firstblood.wav'}

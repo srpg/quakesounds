@@ -3,7 +3,7 @@
 # ========================================
 from filters.players import PlayerIter
 from engines.server import engine_server
-
+from players.entity import Player
 from players.helpers import edict_from_userid, index_from_userid
 
 # ========================================

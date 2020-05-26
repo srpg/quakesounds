@@ -68,11 +68,11 @@ def player_death(args):
 def setFirstblood(a):
 	global _firstblood
 	_firstblood = a
-
+	
 def getSound(i):
 	if i in _sounds:
 		return _sounds[i]
 	return None
 
-_sounds = {3: 'rampage.mp3', 5: 'dominating.mp3', 7: 'killingspree.mp3', 9: 'monsterkill.mp3', 12: 'ludicrouskill.wav', 14: 'ultrakill.mp3', 16: 'godlike.mp3', 18: 'wickedsick.mp3', 21: 'holyshit.mp3', 24: 'unstoppable.mp3', 32: 'bottomfeeder.mp3'}
+_sounds = {5: 'multikill.mp3'6: 'rampage.mp3', 7: 'killingspree.mp3', 9: 'dominating.mp3', 15: 'ultrakill.mp3', 18: 'ludicrouskill.wav',  20: 'wickedsick.mp3', 21: 'monsterkill.mp3', 23: 'holyshit.mp3', 24: 'godlike.mp3', 32: 'bottomfeeder.mp3'35: 'unstoppable.mp3',}
 _others = {0: 'prepare.mp3', 1: 'firstblood.wav'}

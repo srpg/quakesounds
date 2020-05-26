@@ -58,6 +58,9 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
+	if int(args['headshot']):
+		for i in soundlib.getUseridList():
+			soundlib.playgamesound(i, 'quake/headshot.mp3')		
 
 @Event('player_death')
 def player_death(args):

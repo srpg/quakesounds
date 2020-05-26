@@ -12,3 +12,4 @@ sound/quake/bottomfeeder.mp3
 sound/quake/prepare.mp3
 sound/quake/firstblood.wav
 sound/quake/humiliation.mp3
+sound/quake/multikill.mp3

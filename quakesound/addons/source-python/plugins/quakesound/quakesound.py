@@ -58,7 +58,7 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-	if int(args['headshot']):
+	if args.get_int('headshot'):
 		for i in soundlib.getUseridList():
 			soundlib.playgamesound(i, 'quake/headshot.mp3')	
 	if args.get_string('weapon') == 'knife':

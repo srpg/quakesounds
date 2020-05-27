@@ -60,13 +60,11 @@ def player_death(args):
 					_play(attacker, sound)
 	if int(args['headshot']):
 		for i in soundlib.getUseridList():
-			soundlib.playgamesound(i, 'quake/headshot.mp3')		
-
-@Event('player_death')
-def player_death(args):
+			soundlib.playgamesound(i, 'quake/headshot.mp3')	
 	if args.get_string('weapon') == 'knife':
 		for i in soundlib.getUseridList():
 			soundlib.playgamesound(i, 'quake/humiliation.mp3')
+
 					
 def setFirstblood(a):
 	global _firstblood

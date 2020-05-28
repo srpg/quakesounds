@@ -69,7 +69,7 @@ def player_death(args):
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
 @Event('player_death')
-def on_player_death(event):
+def player_death(event):
 	player = Player.from_userid(event['userid'])
 	if player.last_hitgroup = HitGroup.HEAD:
 		for i in soundlib.getUseridList():

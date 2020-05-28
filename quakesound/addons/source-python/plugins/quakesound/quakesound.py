@@ -1,6 +1,9 @@
 import os, path, soundlib
 from events import Event
+from players.entity import Player
+from players.constants import HitGroup
 from stringtables.downloads import Downloadables
+
 
 __FILEPATH__	= path.path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
@@ -59,13 +62,18 @@ def player_death(args):
 				if sound:
 					_play(attacker, sound)
                     
-			if args.get_int('headshot'):
-				for i in soundlib.getUseridList():
-					soundlib.playgamesound(i, 'quake/headshot.mp3')	
+			#if args.get_int('headshot'):
+				#for i in soundlib.getUseridList():
+					#soundlib.playgamesound(i, 'quake/headshot.mp3')	
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
-
+@Event('player_death')
+def on_player_death(event):
+    player = Player.from_userid(event['userid'])
+    if player.last_hitgroup = HitGroup.HEAD:
+	for i in soundlib.getUseridList():
+		soundlib.playgamesound(i, 'quake/headshot.mp3')	
 					
 def setFirstblood(a):
 	global _firstblood

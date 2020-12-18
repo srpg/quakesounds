@@ -14,3 +14,4 @@ sound/quake/firstblood.wav
 sound/quake/humiliation.mp3
 sound/quake/multikill.mp3
 sound/quake/headshot.mp3
+sound/quake/suicide.wav

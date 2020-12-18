@@ -8,7 +8,7 @@ from stringtables.downloads import Downloadables
 __FILEPATH__	= path.path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
 
-games = ['csgo', 'cstrike']
+games = ['csgo', 'orangebox']
 
 players = {}
 _firstblood = False
@@ -67,14 +67,18 @@ def player_death(args):
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
-	else:
-		for i in soundlib.getUseridList():
-			soundlib.playgamesound(i, 'quake/suicide.wav')
-					       
+
 @Event('player_death')
 def player_death(event):
+	victim = Player.from_userid(event['userid'])
+	attacker = event['attacker']
+	killer = Player.from_userid(attacker)
+	if victim.userid == killer.userid:
+		for i in soundlib.getUseridList():
+			soundlib.playgamesound(i, 'quake/suicide.wav')
+
 	if SOURCE_ENGINE in games:
-		if args.get_int('headshot'):
+		if event.get_int('headshot'):
 			for i in soundlib.getUseridList():
 				soundlib.playgamesound(i, 'quake/headshot.mp3')
 	else:

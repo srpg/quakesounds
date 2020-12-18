@@ -1,12 +1,14 @@
 import os, path, soundlib
 from events import Event
+from core import SOURCE_ENGINE
 from players.entity import Player
 from players.constants import HitGroup
 from stringtables.downloads import Downloadables
 
-
 __FILEPATH__	= path.path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
+
+games = ['csgo', 'cstrike']
 
 players = {}
 _firstblood = False
@@ -61,19 +63,21 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-                    
-			#if args.get_int('headshot'):
-				#for i in soundlib.getUseridList():
-					#soundlib.playgamesound(i, 'quake/headshot.mp3')	
+				
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
 @Event('player_death')
 def player_death(event):
-	player = Player.from_userid(event['userid'])
-	if player.last_hitgroup == HitGroup.HEAD:
-		for i in soundlib.getUseridList():
-			soundlib.playgamesound(i, 'quake/headshot.mp3')	
+	if SOURCE_ENGINE in games:
+		if args.get_int('headshot'):
+			for i in soundlib.getUseridList():
+				soundlib.playgamesound(i, 'quake/headshot.mp3')
+	else:
+		player = Player.from_userid(event['userid'])
+		if player.last_hitgroup == HitGroup.HEAD:
+			for i in soundlib.getUseridList():
+				soundlib.playgamesound(i, 'quake/headshot.mp3')
 					
 def setFirstblood(a):
 	global _firstblood

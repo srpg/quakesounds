@@ -67,6 +67,10 @@ def player_death(args):
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
+	else:
+		for i in soundlib.getUseridList():
+			soundlib.playgamesound(i, 'quake/suicide.wav')
+					       
 @Event('player_death')
 def player_death(event):
 	if SOURCE_ENGINE in games:

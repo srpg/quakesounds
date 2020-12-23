@@ -5,7 +5,7 @@ from players.entity import Player
 from players.constants import HitGroup
 from stringtables.downloads import Downloadables
 
-__FILEPATH__	= path.path(__file__).dirname()
+__FILEPATH__	= path.Path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
 
 games = ['csgo', 'orangebox']

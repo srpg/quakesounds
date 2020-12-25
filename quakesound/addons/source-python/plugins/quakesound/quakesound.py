@@ -71,8 +71,7 @@ def player_death(args):
 @Event('player_death')
 def player_death(event):
 	victim = Player.from_userid(event['userid'])
-	attacker = event['attacker']
-	killer = Player.from_userid(attacker)
+	killer = Player.from_userid(event['attacker'])
 	if victim.userid == killer.userid:
 		for i in soundlib.getUseridList():
 			soundlib.playgamesound(i, 'quake/suicide.wav')

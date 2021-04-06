@@ -9,7 +9,7 @@ from stringtables.downloads import Downloadables
 __FILEPATH__	= path.Path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
 
-games = ['csgo', 'cstike
+games = ['csgo', 'cstike']
 
 players = {}
 _firstblood = False

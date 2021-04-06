@@ -1,14 +1,15 @@
 import os, path, soundlib
 from events import Event
-from core import SOURCE_ENGINE
+from core import GAME_NAME
 from players.entity import Player
+from players.helpers import index_from_userid
 from players.constants import HitGroup
 from stringtables.downloads import Downloadables
 
 __FILEPATH__	= path.Path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
 
-games = ['csgo', 'orangebox']
+games = ['csgo', 'cstike
 
 players = {}
 _firstblood = False
@@ -52,6 +53,9 @@ def player_death(args):
 	userid = args.get_int('userid')
 	attacker = args.get_int('attacker')
 	if attacker > 0:
+		if userid == attacker:
+			for i in soundlib.getUseridList():
+				soundlib.playgamesound(i, 'quake/suicide.wav')
 		if not soundlib.getTeam(userid) == soundlib.getTeam(attacker):
 			players[userid] = 0
 			players[attacker] += 1
@@ -63,29 +67,19 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-				
+			if SOURCE_ENGINE in games:
+				if args.get_int('headshot'):
+					for i in soundlib.getUseridList():
+						soundlib.playgamesound(i, 'quake/headshot.mp3')
+			else:
+				Player(index_from_userid(userid)).last_hitgroup == HitGroup.HEAD:
+					for i in soundlib.getUseridList():
+						soundlib.playgamesound(i, 'quake/headshot.mp3')
+	
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
 
-@Event('player_death')
-def player_death(event):
-	victim = Player.from_userid(event['userid'])
-	killer = Player.from_userid(event['attacker'])
-	if victim.userid == killer.userid:
-		for i in soundlib.getUseridList():
-			soundlib.playgamesound(i, 'quake/suicide.wav')
-
-	if SOURCE_ENGINE in games:
-		if event.get_int('headshot'):
-			for i in soundlib.getUseridList():
-				soundlib.playgamesound(i, 'quake/headshot.mp3')
-	else:
-		player = Player.from_userid(event['userid'])
-		if player.last_hitgroup == HitGroup.HEAD:
-			for i in soundlib.getUseridList():
-				soundlib.playgamesound(i, 'quake/headshot.mp3')
-					
 def setFirstblood(a):
 	global _firstblood
 	_firstblood = a

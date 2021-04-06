@@ -53,9 +53,12 @@ def player_death(args):
 	userid = args.get_int('userid')
 	attacker = args.get_int('attacker')
 	if attacker > 0:
-		if userid == attacker:
+		if userid == attacker: # Suicide
 			for i in soundlib.getUseridList():
 				soundlib.playgamesound(i, 'quake/suicide.wav')
+		if attacker == attacker: # is this team kill?
+			for i in soundlib.getUseridList():
+				soundlib.playgamesound(i, 'quake/teamkiller.mp3')
 		if not soundlib.getTeam(userid) == soundlib.getTeam(attacker):
 			players[userid] = 0
 			players[attacker] += 1

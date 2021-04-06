@@ -72,7 +72,7 @@ def player_death(args):
 					for i in soundlib.getUseridList():
 						soundlib.playgamesound(i, 'quake/headshot.mp3')
 			else:
-				Player(index_from_userid(userid)).last_hitgroup == HitGroup.HEAD:
+				if Player(index_from_userid(userid)).last_hitgroup == HitGroup.HEAD:
 					for i in soundlib.getUseridList():
 						soundlib.playgamesound(i, 'quake/headshot.mp3')
 	

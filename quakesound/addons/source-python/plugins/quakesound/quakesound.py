@@ -56,9 +56,6 @@ def player_death(args):
 		if userid == attacker: # Suicide
 			for i in soundlib.getUseridList():
 				soundlib.playgamesound(i, 'quake/suicide.wav')
-		if attacker == userid: # is this team kill?
-			for i in soundlib.getUseridList():
-				soundlib.playgamesound(i, 'quake/teamkiller.mp3')
 		if not soundlib.getTeam(userid) == soundlib.getTeam(attacker):
 			players[userid] = 0
 			players[attacker] += 1
@@ -82,7 +79,10 @@ def player_death(args):
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
-
+		else:
+			for i in soundlib.getUseridList():
+				soundlib.playgamesound(i, 'quake/teamkiller.mp3')
+                
 def setFirstblood(a):
 	global _firstblood
 	_firstblood = a

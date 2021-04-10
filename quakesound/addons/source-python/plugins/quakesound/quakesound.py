@@ -79,9 +79,6 @@ def player_death(args):
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
-		else:
-			for i in soundlib.getUseridList():
-				soundlib.playgamesound(i, 'quake/teamkiller.mp3')
                 
 def setFirstblood(a):
 	global _firstblood

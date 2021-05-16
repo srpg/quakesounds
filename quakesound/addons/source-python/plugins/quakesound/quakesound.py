@@ -54,6 +54,7 @@ def player_death(args):
 	attacker = args.get_int('attacker')
 	if attacker > 0:
 		if userid == attacker: # Suicide
+			players[userid] = 0 # Not sure is this require to "start over" from kills
 			for i in soundlib.getUseridList():
 				soundlib.playgamesound(i, 'quake/suicide.wav')
 		if not soundlib.getTeam(userid) == soundlib.getTeam(attacker):

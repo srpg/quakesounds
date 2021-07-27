@@ -53,10 +53,6 @@ def player_death(args):
 	userid = args.get_int('userid')
 	attacker = args.get_int('attacker')
 	if attacker > 0:
-		if userid == attacker: # Suicide
-			players[userid] = 0 # Not sure is this require to "start over" from kills
-			for i in soundlib.getUseridList():
-				soundlib.playgamesound(i, 'quake/suicide.wav')
 		if not soundlib.getTeam(userid) == soundlib.getTeam(attacker):
 			players[userid] = 0
 			players[attacker] += 1
@@ -68,18 +64,21 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-			if GAME_NAME in games:
-				if args.get_int('headshot'):
-					for i in soundlib.getUseridList():
-						soundlib.playgamesound(i, 'quake/headshot.mp3')
+			if GAME_NAME in games and args.get_int('headshot'):
+				for i in soundlib.getUseridList():
+					soundlib.playgamesound(i, 'quake/headshot.mp3')
 			else:
-				if Player(index_from_userid(userid)).last_hitgroup == HitGroup.HEAD:
+				if Player.from_userid(userid).last_hitgroup == HitGroup.HEAD:
 					for i in soundlib.getUseridList():
 						soundlib.playgamesound(i, 'quake/headshot.mp3')
 	
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')
+	else: # Not sure will this method count "Suicide"
+		players[userid] = 0
+		for i in soundlib.getUseridList():
+			soundlib.playgamesound(i, 'quake/suicide.wav')
                 
 def setFirstblood(a):
 	global _firstblood

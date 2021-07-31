@@ -2,7 +2,6 @@ import os, path, soundlib
 from events import Event
 from core import GAME_NAME
 from players.entity import Player
-from players.helpers import index_from_userid
 from players.constants import HitGroup
 from stringtables.downloads import Downloadables
 

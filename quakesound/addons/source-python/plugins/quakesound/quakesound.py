@@ -8,8 +8,6 @@ from stringtables.downloads import Downloadables
 __FILEPATH__	= path.Path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
 
-games = ['csgo', 'cstrike']
-
 players = {}
 _firstblood = False
 
@@ -67,7 +65,7 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-			if GAME_NAME in games and args.get_int('headshot'):
+			if GAME_NAME in ['cstrike', 'csgo'] and args.get_int('headshot'):
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/headshot.mp3')
 			else:

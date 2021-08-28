@@ -4,6 +4,7 @@ from core import GAME_NAME
 from players.entity import Player
 from players.constants import HitGroup
 from stringtables.downloads import Downloadables
+from listeners import OnLevelInit
 
 __FILEPATH__	= path.Path(__file__).dirname()
 DOWNLOADLIST_PATH	= os.path.join(__FILEPATH__ + '/download/download.txt')
@@ -23,16 +24,16 @@ def setDL():
 				continue
 			downloadables.add(line)
 
-
-@Event('map_start')    
-def map_start(args):
+@OnLevelInit
+def map_start(map):
 	players.clear()
+	if not GAME_NAME in ['cstrike', 'csgo']:
+		setFirstblood(True)
 
 def _play(userid, sound):
 	for userid in soundlib.getUseridList():
 		soundlib.playgamesound(userid, 'quake/%s' % sound)  
 		    
-
 @Event('round_start')
 def round_start(args):
 	for i in soundlib.getUseridList():
@@ -65,14 +66,10 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-			if GAME_NAME in ['cstrike', 'csgo'] and args.get_int('headshot'):
+			if Player.from_userid(userid).last_hitgroup == HitGroup.HEAD:
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/headshot.mp3')
-			else:
-				if Player.from_userid(userid).last_hitgroup == HitGroup.HEAD:
-					for i in soundlib.getUseridList():
-						soundlib.playgamesound(i, 'quake/headshot.mp3')
-	
+
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/humiliation.mp3')

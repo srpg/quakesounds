@@ -66,9 +66,13 @@ def player_death(args):
 				sound = getSound(players[attacker])
 				if sound:
 					_play(attacker, sound)
-			if Player.from_userid(userid).last_hitgroup == HitGroup.HEAD:
+			if GAME_NAME in ['cstrike', 'csgo'] and args.get_int('headshot'):
 				for i in soundlib.getUseridList():
 					soundlib.playgamesound(i, 'quake/headshot.mp3')
+			else:
+				if Player.from_userid(userid).last_hitgroup == HitGroup.HEAD:
+					for i in soundlib.getUseridList():
+						soundlib.playgamesound(i, 'quake/headshot.mp3')
 
 			if args.get_string('weapon') == 'knife':
 				for i in soundlib.getUseridList():

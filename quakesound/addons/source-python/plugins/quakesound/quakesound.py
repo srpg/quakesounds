@@ -30,7 +30,7 @@ def map_start(map):
 	players.clear()
 
 def _play(sound):
-	Sound(f'quake/{sound}')
+	Sound(f'quake/{sound}').play()
 		    
 @Event('round_start')
 def round_start(args):

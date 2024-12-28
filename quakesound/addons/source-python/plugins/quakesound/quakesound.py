@@ -1,8 +1,8 @@
 import path
 from events import Event
 from core import GAME_NAME
+from filters.players import PlayerIter
 from players.entity import Player
-from engines.sound import Sound
 from players.constants import HitGroup
 from stringtables.downloads import Downloadables
 from listeners import OnLevelInit
@@ -26,11 +26,12 @@ def setDL():
 			downloadables.add(line)
 
 @OnLevelInit
-def map_start(map):
+def map_start(current_map):
 	players.clear()
 
 def _play(sound):
-	Sound(f'quake/{sound}').play()
+	for player in PlayerIter('human'):
+		player.client_command(f'play quake/{sound}')
 		    
 @Event('round_start')
 def round_start(args):
